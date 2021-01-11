@@ -29,7 +29,7 @@ module.exports = {
   */
   session: {
     serializer: 'lucid',
-    model: 'App/Models/User',
+    model: 'App/Models/UserInfo',
     scheme: 'session',
     uid: 'email',
     password: 'password'
@@ -50,7 +50,7 @@ module.exports = {
   */
   basic: {
     serializer: 'lucid',
-    model: 'App/Models/User',
+    model: 'App/Models/UserInfo',
     scheme: 'basic',
     uid: 'email',
     password: 'password'
@@ -67,7 +67,7 @@ module.exports = {
   */
   jwt: {
     serializer: 'lucid',
-    model: 'App/Models/User',
+    model: 'App/Models/UserInfo',
     scheme: 'jwt',
     uid: 'email',
     password: 'password',
@@ -86,7 +86,7 @@ module.exports = {
   */
   api: {
     serializer: 'lucid',
-    model: 'App/Models/User',
+    model: 'App/Models/UserInfo',
     scheme: 'api',
     uid: 'email',
     password: 'password'
