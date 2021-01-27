@@ -36,7 +36,10 @@ const globalMiddleware = [
 */
 const namedMiddleware = {
   auth: 'Adonis/Middleware/Auth',
-  guest: 'Adonis/Middleware/AllowGuestOnly'
+  guest: 'Adonis/Middleware/AllowGuestOnly',
+  req_params: 'App/Middleware/UserRequiredParamsChecker',
+  check_existing_user: 'App/Middleware/CheckExistingUser',
+  email_format: "App/Middleware/CheckEmailAddressFormat"
 }
 
 /*
