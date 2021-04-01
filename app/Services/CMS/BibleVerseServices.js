@@ -4,7 +4,7 @@ const Database = use("Database");
 
 class BibleVerseServices {
     async createBibleVerse({ info }) {
-        const { book, chapter, verse_no, details, keywords } = info;
+        const { book, chapter, verse_no, details, keywords, translation_id } = info;
 
         const bverses = new BibleVerses();
 
@@ -12,10 +12,11 @@ class BibleVerseServices {
         bverses.chapter = chapter;
         bverses.verse_no = verse_no;
         bverses.details = details;
+        bverses.translation_id = translation_id;
 
         const result = await bverses.save();
         const last_row = await BibleVerses.last();
-        
+
         for (const keyword of keywords) {
             await this.createKeywords({
                 id: last_row.id,
@@ -24,7 +25,7 @@ class BibleVerseServices {
         }
 
         return result;
-        
+
     }
 
     async createKeywords({ id, keywords }) {
@@ -41,10 +42,14 @@ class BibleVerseServices {
     }
 
     async updateBibleVerseInfo({ id, req }) {
+        const data = {
+            updated_at: Database.fn.now(),
+            ...req,
+        }
         const affectedRows = await Database.table('bible_verses')
             .where('id', id)
-            .update(req);
-        
+            .update(data);
+
         return affectedRows;
     }
 }
