@@ -16,6 +16,15 @@
 const Route = use('Route')
 
 Route.group(() => {
+  Route.get("/", "Admin/UserController.index");
+  Route.get("/:id", "Admin/UserController.search");
+  Route.post("", "Admin/UserController.create")
+    .middleware(['req_params', 'check_existing_user', 'email_format'])
+  Route.put("/:id", "Admin/UserController.update");
+  Route.delete("archive/:id/:status", "Admin/UserController.archive");
+}).prefix('users')
+
+Route.group(() => {
   Route.get("/", "CMS/BibleVerseController.index");
   Route.get("/:id", "CMS/BibleVerseController.search");
   Route.post("/", "CMS/BibleVerseController.create");
