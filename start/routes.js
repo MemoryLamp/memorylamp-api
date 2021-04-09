@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 |
 */
 
-const Route = use('Route')
+const Route = use('Route');
 
 Route.group(() => {
   Route.get("/", "Admin/UserController.index");
@@ -31,3 +31,11 @@ Route.group(() => {
   Route.put("/:id", "CMS/BibleVerseController.update");
   Route.delete("/:id", "CMS/BibleVerseController.delete");
 }).prefix('verses')
+
+Route.group(() => {
+  Route.get('/', 'CMS/BibleTranslationController.index')
+  Route.get('/:id', 'CMS/BibleTranslationController.search')
+  Route.post('/', 'CMS/BibleTranslationController.create').middleware(['translations_req_params'])
+  Route.put('/:id', 'CMS/BibleTranslationController.update').middleware(['translations_req_params'])
+  Route.delete('/:id', 'CMS/BibleTranslationController.delete')
+}).prefix('translations')
