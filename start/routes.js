@@ -13,9 +13,12 @@
 |
 */
 
-/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(() => {
+  Route.get("/", "CMS/BibleVerseController.index");
+  Route.get("/:id", "CMS/BibleVerseController.search");
+  Route.post("/", "CMS/BibleVerseController.create");
+  Route.put("/:id", "CMS/BibleVerseController.update");
+  Route.delete("/:id", "CMS/BibleVerseController.delete");
+}).prefix('verses')
