@@ -39,7 +39,8 @@ const namedMiddleware = {
   guest: 'Adonis/Middleware/AllowGuestOnly',
   req_params: 'App/Middleware/UserRequiredParamsChecker',
   check_existing_user: 'App/Middleware/CheckExistingUser',
-  email_format: "App/Middleware/CheckEmailAddressFormat"
+  email_format: "App/Middleware/CheckEmailAddressFormat",
+  translations_req_params: 'App/Middleware/BibleTranslationParamsChecker',
 }
 
 /*
