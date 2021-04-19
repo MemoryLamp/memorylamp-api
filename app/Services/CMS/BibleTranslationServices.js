@@ -1,4 +1,5 @@
 const BibleTranslation = use('App/Models/BibleTranslation')
+const Database = use("Database")
 
 class BibleTranslationServices {
   async getAllBibleTranslation() {
@@ -20,6 +21,7 @@ class BibleTranslationServices {
 
   async updateBibleTranslation({ id, info }) {
     const translation = this.createModelObject(info)
+    translation.updated_at = Database.fn.now()
     const result = await BibleTranslation.query().where('id', id).update(translation)
     return result
   }
