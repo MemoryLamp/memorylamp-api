@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -13,16 +13,19 @@
 |
 */
 
-const Route = use('Route');
+const Route = use("Route");
 
 Route.group(() => {
   Route.get("/", "Admin/UserController.index");
   Route.get("/:id", "Admin/UserController.search");
-  Route.post("", "Admin/UserController.create")
-    .middleware(['req_params', 'check_existing_user', 'email_format'])
+  Route.post("", "Admin/UserController.create").middleware([
+    "req_params",
+    "check_existing_user",
+    "email_format",
+  ]);
   Route.put("/:id", "Admin/UserController.update");
   Route.delete("archive/:id/:status", "Admin/UserController.archive");
-}).prefix('users')
+}).prefix("users");
 
 Route.group(() => {
   Route.get("/", "CMS/BibleVerseController.index");
@@ -30,12 +33,22 @@ Route.group(() => {
   Route.post("/", "CMS/BibleVerseController.create");
   Route.put("/:id", "CMS/BibleVerseController.update");
   Route.delete("/:id", "CMS/BibleVerseController.delete");
-}).prefix('verses')
+}).prefix("verses");
 
 Route.group(() => {
-  Route.get('/', 'CMS/BibleTranslationController.index')
-  Route.get('/:id', 'CMS/BibleTranslationController.search')
-  Route.post('/', 'CMS/BibleTranslationController.create').middleware(['translations_req_params'])
-  Route.put('/:id', 'CMS/BibleTranslationController.update').middleware(['translations_req_params'])
-  Route.delete('/:id', 'CMS/BibleTranslationController.delete')
-}).prefix('translations')
+  Route.get("/", "CMS/BibleTranslationController.index");
+  Route.get("/:id", "CMS/BibleTranslationController.search");
+  Route.post("/", "CMS/BibleTranslationController.create").middleware([
+    "translations_req_params",
+  ]);
+  Route.put("/:id", "CMS/BibleTranslationController.update").middleware([
+    "translations_req_params",
+  ]);
+  Route.delete("/:id", "CMS/BibleTranslationController.delete");
+}).prefix("translations");
+
+Route.group(() => {
+  Route.get("/", "CMS/MoodController.getAllMoods");
+  Route.post("/", "CMS/MoodController.createMood");
+  Route.put("/:id", "CMS/MoodController.updateMood");
+}).prefix("moods");
